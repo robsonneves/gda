@@ -33,7 +33,7 @@
         @if(Auth::guest())
 
     <!-- pulled right: nav area -->
-    <div class="pull-right">
+    {{--<div class="pull-right">
         <!-- Top menu profile link : this shows only when top menu is active -->
         <ul id="mobile-profile-img" class="header-dropdown-list hidden-lg padding-5">
             <li class="">
@@ -43,7 +43,7 @@
             </li>
         </ul>
     </div>
-
+    --}}
         @else
     {{--    ABA MSG 2 MENU LEFT
             <!-- #PROJECTS: projects dropdown -->
@@ -113,7 +113,7 @@
                         <li class="jumbotron-icon linkModulo ">
                             <a href="/site/processos" class="fa fa-file-text-o txt-color-red icon-3 p-ico1" rel="tooltip" data-placement="top" data-original-title="Processos">
                             </a>
-                            <a href="#" class="fa fa-download txt-color-black icon-3 p-ico2" rel="tooltip" data-placement="top" data-original-title="Processos">
+                            <a href="{{route('uploads.index')}}" class="fa fa-download txt-color-black icon-3 p-ico2" rel="tooltip" data-placement="top" data-original-title="Processos">
                             </a>
                         </li>
                     </ul>

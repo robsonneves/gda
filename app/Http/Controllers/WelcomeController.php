@@ -1,38 +1,36 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class WelcomeController extends Controller {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Welcome Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
-	|
-	*/
-
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
 	public function __construct()
 	{
         $this->middleware('guest');
 	}
 
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		return view('welcome');
+        //return view('layouts.site.widget')->nest('key', 'uploads.index', array('files' =>  $files));
 	}
 
+    public function Contato(Request $request)
+    {
+        try{
+
+            $this->data = $request->all();
+
+            \Mail::queue('emails.welcome', $this->data, function($message)
+            {
+                $message->to($this->data['email'],$this->data['name'])->subject($this->data['message']);
+            });
+
+            return redirect()->back()->with('success',' Enviado');
+
+        }catch (\Exception $e) {
+
+            return redirect()->back()->with('error',' Falha ao Enviar');
+        }
+
+    }
 }

@@ -41,7 +41,7 @@
                                     <h4 class="font-md"><strong></strong>
                                     <br>
                                     <small></small></h4>
-                                </div>n
+                                </div>
                             </div>
                             <div class="col-sm-6">
                                 @if(!$social)
@@ -75,9 +75,11 @@
                                 <h1>
                                     <small>
                                         Social
-                                        <a href="/social/" data-toggle="modal" data-target="#remoteModal" id="dialog-modal">
+                                        <a href="/social/"><i class="fa fa-cog fa-sm"></i></a>
+
+                                        <!--a href="/social/" data-toggle="modal" data-target="#remoteModal" id="dialog-modal">
                                             <i class="fa fa-cog fa-sm"></i>
-                                        </a>
+                                        </a-->
                                     </small>
                                 </h1>
                                 <ul class="company-social">

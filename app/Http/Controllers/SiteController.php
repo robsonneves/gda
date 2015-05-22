@@ -29,7 +29,7 @@ class SiteController extends Controller {
     {
         return view('site.processos');
     }
-
+    
     public function getUpdates(Request $request,Tramitacao $tramitacao)
     {
         $ficha = $request->route('ficha');
@@ -44,14 +44,4 @@ class SiteController extends Controller {
         $social = $this->user->sociais()->where('active',1)->first();
         return view('site.profile')->with('pessoa',$pessoa)->with('social',$social);
     }
-
-    public function postContato(Request $request)
-    {
-        $this->data = $request->all();
-        \Mail::later(5,'emails.welcome', $this->data, function($message)
-        {
-            $message->to($this->data['email'],$this->data['name'])->subject($this->data['subject']);
-        });
-    }
-
 }

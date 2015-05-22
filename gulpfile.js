@@ -37,20 +37,31 @@ elixir(function(mix) {
          'jquery.scrollUp.js',
          'jquery.themepunch.plugins.min.js',
          'jquery.themepunch.revolution.min.js',
+         'jarvis.widget.min.js',
          //'formController.js'
 
     ],'public/assets/site/js/everything.js','resources/assets/site/js')
 
-    mix.version([
+      mix.version([
         'assets/site/css/everything.css',
         'assets/site/js/everything.js',
+
     ])
 
     .copy('resources/assets/site/fonts/',   'public/assets/site/fonts')
     .copy('resources/assets/site/img/',     'public/assets/site/img')
     .copy('resources/assets/site/angular/', 'public/assets/site/angular')
     .copy('resources/assets/site/libs/' ,   'public/assets/site/libs')
-    .copy('resources/assets/site/requirejs/' ,   'public/assets/site/requirejs')
+    .copy('resources/assets/site/requirejs/' , 'public/assets/site/requirejs')
+    .copy('resources/assets/site/requirejs/' , 'public/assets/site/requirejs')
+    .copy('public/assets/site/js/' , 'public/build/assets/site/js/')
+    .copy('public/assets/site/css/' , 'public/build/assets/site/css/')
 
-    ;
+
+
+
+
+ ;
+
 });
+

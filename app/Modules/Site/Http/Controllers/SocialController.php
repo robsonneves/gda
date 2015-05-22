@@ -2,7 +2,7 @@
 
 use App\Contracts\Data\Social;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SocialRequest;
+use App\Modules\Site\Http\Requests\SocialRequest;
 
 
 class SocialController extends Controller {
@@ -47,12 +47,12 @@ class SocialController extends Controller {
         try{
             if(!$social->create($request->all()) ){throw new \Exception("Error Processing Request"); }
 
-            if ($request->ajax()) { return response()->json(['success'=>true]); }
+            if ($request->ajax()) { return response()->json(['success'=>true],200); }
             return redirect()->route('social.create');
 
         }catch (\Exception $e) {
 
-            if ($request->ajax()) { return response()->json(['fail'=>true]); }
+            if ($request->ajax()) { return response()->json(['fail'=>true],401); }
             return redirect()->route('social.create');
         }
 

@@ -14,12 +14,12 @@ Route::group(['middleware' => 'guest'], function()
 {
    Route::get('/', function()
    {
-		return view('site.index'); 
+		return view('site.index');
    });
-
 });
 
 Route::get('install', 'WelcomeController@install');
+
 
 Route::get('site/updates/{ficha}/{inc}','SiteController@getUpdates');
 
@@ -31,5 +31,7 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
 
 

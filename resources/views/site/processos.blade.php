@@ -4,9 +4,9 @@
 
 <style type="text/css">.trow {width: 100%;}</style> <!-- TAMANHO DA ROW -->
 
-<div>
+<div class="panel col-lg-12">
     <br>
-    <div ng-controller="ProcessListCtrl" class="home-sectionr">
+    <div ng-controller="ProcessListCtrl" class="home-sectionr"  style="margin:0px 0px 300px ">
         <div class="row trow">
             <div class="col-lg-10 col-lg-offset-1">
                 <div class="col-lg-12">
@@ -26,21 +26,21 @@
 
         <div class="row trow" >
             <div class="col-lg-10 col-lg-offset-1">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="conteiner-fluid col-md-12" ng-repeat="processo in processos | filter:query | orderBy:orderProp">
-                            <h4 class="panel-title">
-                                <p>
-                                    <i class="fa fa-download pull-left fa-lg txt-color-blue"></i>
-                                    <a href="updates/@{{processo.ficha}}/@{{processo.incidente}}" class="col-md-3 col-lg-offset-1">
-                                       <b>@{{processo.numero_processo}}</b>
-                                    </a>
-                                    <i class="fa fa-briefcase col-md-3">&nbsp;&nbsp; @{{processo.advogado.nome}} </i>
-                                    <i class="fa fa-legal col-md-4">&nbsp;&nbsp; @{{processo.reu.nome}}  </i>
-                                    <i class="fa fa-star pull-right  fa-lg txt-color-yellow "></i>
-                                </p>
-                            </h4>
-                        </div>
+                <div class="panel-heading">
+                    <div class="conteiner-fluid col-md-12" ng-repeat="processo in processos | filter:query | orderBy:orderProp">
+                        <h4 class="panel-title">
+                            <p>
+                                <i class="fa fa-download pull-left fa-lg txt-color-blue"></i>
+                                <a href="/uploads/novo/@{{processo.ficha}}/@{{processo.incidente}}"><i class="fa fa-paperclip pull-left fa-lg txt-color-green"></i></a>
+                              
+                                <a href="updates/@{{processo.ficha}}/@{{processo.incidente}}" class="col-md-3 col-lg-offset-1">
+                                   <b>@{{processo.numero_processo}}</b>
+                                </a>
+                                <i class="fa fa-briefcase col-md-3">&nbsp;&nbsp; @{{processo.advogado.nome}}</i>
+                                <i class="fa fa-legal col-md-4">&nbsp;&nbsp; @{{processo.reu.nome}}  </i>
+                                <i class="fa fa-star-o pull-right fa-lg"></i>
+                            </p>
+                        </h4>
                     </div>
                 </div>
             </div>

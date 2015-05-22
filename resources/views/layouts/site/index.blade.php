@@ -10,14 +10,15 @@
 		<title>GDA Mobile</title>
 
 		<!-- CSS -->
-                           <link rel="stylesheet" type="text/css" media="screen" href="{{elixir("assets/site/css/everything.css")}}">
+        @section('css')
+        <link rel="stylesheet" type="text/css" media="screen" href="{{elixir("assets/site/css/everything.css")}}">
+    	@show
 
-                	<!-- LIB JS -->
-                            <script src="{{asset('site/requirejs/require.js')}}" data-main="{{asset("site/requirejs/main.js")}}"></script>
-                            <script src="{{asset("assets/site/libs/jquery-2.1.3.min.js")}}"></script>
-                            <script src="{{asset("assets/site/libs/angular-1.3.15.min.js")}}"></script>
-                            <script src="{{asset("assets/site/requirejs/controllers.js")}}"></script>
-
+        <!-- LIB JS -->
+        <script src="{{asset('site/requirejs/require.js')}}" data-main="{{asset("site/requirejs/main.js")}}"></script>
+        <script src="{{asset("bower_components/jquery/dist/jquery.js")}}"></script>
+        <script src="{{asset("bower_components/angular/angular.js")}}"></script>
+        <script src="{{asset("assets/site/requirejs/controllers.js")}}"></script>
     </head>
 
 	<!--
@@ -67,6 +68,19 @@
 
 		<div style="padding-bottom: 250px;">
 
+            @if(Session::has('success'))
+
+                <div class="alert alert-success fade in"><button class="close" data-dismiss="alert">×</button>
+                    <i class="fa-fw fa fa-check"></i><strong>Success</strong>{{Session::get('success')}}
+                </div>
+            @elseif(Session::has('error'))
+
+                <div class="alert alert-danger fade in"><button class="close" data-dismiss="alert">×</button>
+                    <i class="fa-fw fa fa-times"></i><strong>Error!</strong> {{Session::get('error')}}
+               </div>
+            @endif
+
+
         @yield('content')
 
 		</div>
@@ -92,8 +106,9 @@
 		@include('layouts.site.footer')
         <!-- / #FOOTER -->
 
+        @section('scripts')
         <script src="{{elixir("assets/site/js/everything.js")}}"></script>
-
+        @show
 
 
 		<!-- #PAGE SCRIPT -->

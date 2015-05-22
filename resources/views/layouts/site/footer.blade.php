@@ -3,7 +3,7 @@
 <footer class="fixa">
     <div class="footer-content clearfix">
         <div class="container custom-container">
-            <div class="row">
+            <div class="row-fluid">
                 <div class="col-md-2 col-sm-6 col-xs-12">
                     
                     <font color="e25450">Matriz - PR</font>
@@ -16,6 +16,14 @@
                     <br>
                     <abbr title="Phone">Tel</abbr> (41) 3072-7500 
                     </p>
+
+
+                    <a href="{{ url('/contato') }}">
+                        <font color="e25450" size="20">Contato</font>
+                    </a>
+
+
+
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-12">
                     

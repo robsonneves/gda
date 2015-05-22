@@ -1,18 +1,16 @@
-<html>
-    
-    <head>
-        <script>$('#remoteModal').on('hide.bs.modal', function (e) { $('#remoteModal').removeData();});</script><!--Limpa MyModal -->
-    </head>
-    
-    <body>
+@section('content')
 
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Login</h4>
-        </div>
-        <div class="modal-body">
-            <div class="no-padding">
-                <form action="{{ url('/auth/login') }}" id="login-form" class="smart-form client-form" method="post">
+<br>
+<br>
+
+    <div class="row-fluid">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="well no-padding">
+                <form action="{{ url('/auth/login') }}" id="form-controller" class="smart-form client-form" method="post" data-type="post" >
+                    <header>
+                        <h3>Login</h3>
+                    </header>      
+                    
                     <fieldset>
                         <section>
                             <label class="label">Usuário</label>
@@ -38,15 +36,18 @@
                             </div>
                         </section>
                     </fieldset>
-                    <div class="modal-footer" style="border: 0px">
-                        <button type="submit" class="btn btn-primary btn-sm">LOGAR</button>
+                    <header class="alturalinha">
+                        <button type="submit" class="btn btn-primary btn-sm pull-right">LOGAR</button>
                         <a href="{{url('auth/register')}}" type="button" class="btn btn-primary btn-sm pull-left">REGISTRAR</a>
-                    </div>
+                    </header>
                 </form>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+
+    <style type="text/css">.alturalinha{height: 35px;} </style>
+
+
 
 
 

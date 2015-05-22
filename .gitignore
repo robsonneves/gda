@@ -4,7 +4,11 @@
 .env
 .idea
 .idea/
-/public
+/public/js
+/public/css
+/public/fonts
+/public/build
+/public/assets/
 composer.phar
 
 

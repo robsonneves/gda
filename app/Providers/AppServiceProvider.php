@@ -66,7 +66,15 @@ class AppServiceProvider extends ServiceProvider {
             'App\Data\Tramitacao'
         );
 
+        $this->app->bind(
+            'App\Contracts\Data\File',
+            'App\Data\File'
+        );
+        $this->app->bind(
+            'App\Contracts\Data\Register',
+            'App\Data\Register'
+        );
 
-	}
+    }
 
 }

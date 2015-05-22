@@ -14,7 +14,7 @@ class CreateGdaSocialTable extends Migration {
 	{
         Schema::create('gda_social', function(Blueprint $table)
         {
-            $table->bigInteger('id')->primary();
+            $table->bigInteger('id')->primary(); //bigIncrements,
             $table->string('nome'); //verficar ->unique();
             $table->string('email');
             $table->string('link');

@@ -11,8 +11,8 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		'App\Events\SendMails' => [
-			'App\Handlers\Events\Basic',
+		'App\Events\NewRegister' => [
+			'App\Handlers\Events\EmailRegister',
 		],
 	];
 
