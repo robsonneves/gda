@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Modules\App\Repositories\AuthAndPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Laravel\Socialite\SocialiteManager;
 
 class AuthController extends Controller {
 
@@ -29,9 +30,9 @@ class AuthController extends Controller {
     use AuthAndPassword;
 
     protected $providers = [
-                            'github',
                             'facebook',
-                            'google',
+                            'linkedin',
+                            'twitter',
     ];
 
 	/**
@@ -47,6 +48,7 @@ class AuthController extends Controller {
         $this->cookie   = $cookie;
         $this->web      = $web;
         $this->app      = $app;
+
         //$this->registrar = $registrar;
 		//$this->middleware('guest', ['except' => 'getLogout']);
 	}
@@ -54,39 +56,77 @@ class AuthController extends Controller {
     public function getRedirect($provider)
     {
         if (in_array($provider, $this->providers)){
-            return \Socialize::with($provider)->scopes(['email','public_profile','user_friends'])->redirect();
-            //return \Socialize::with($provider)->redirect();
+
+            /*
+            switch($provider){
+
+                case 'facebook': return \Socialize::with($provider)->scopes(['email','public_profile','user_friends'])->redirect();
+                    break;
+
+                default:
+
+            }
+            */
+            return \Socialize::with($provider)->redirect();
+
         }else{
 
-            return "Provedor no autorizado";
+            return redirect()->back()->with('error',$provider. ' ainda não foi associada o sistema DESCULPE :(' );
         }
 
     }
 
-    public function getCallback(Social $social)
+    public function getCallbacklinkedin()
     {
+        $profile = \Socialize::with('linkedin')->user();
+        $profile->link      = 'https://www.linkedin.com/profile/view?id='.$profile->id;
+        $profile->provider  = 'linkedin';
+        return $this->saveSocial($profile);
+    }
 
-        $user = Auth::user();
+    public function getCallbacktwitter()
+    {
+        $profile = \Socialize::with('twitter')->user();
+        $profile->link      = 'https://twitter.com/'.$profile->nickname;
+        $profile->provider  = 'twitter';
+        return $this->saveSocial($profile);
+    }
+
+
+    public function getCallbackfacebook()
+    {
         $profile = \Socialize::with('facebook')->user();
+        $profile->link      = $profile->user['link'];
+        $profile->provider  = 'facebook';
+        return $this->saveSocial($profile);
+    }
 
-        $social = $social->where('provider','facebook')->where('id',$profile->id)->where('user_id',$user->id)->first();
+    private function saveSocial($profile)
+    {
+         $user = Auth::user();
+         $social = new \App\Data\Social();
 
-            if(!$social) {
+         $sociais  = $social->whereUserId($user->id)->count();
+         $social   = $social->whereProvider($profile->provider)->whereId($profile->id)->first();
 
+            if(!$social)
+            {
                 $social = new \App\Data\Social();
-                $social->id = intval($profile->id);
-                $social->nome = $profile->name;
+                $social->id = $profile->id;
+                $social->name = $profile->name;
                 $social->email = $profile->email;
                 $social->avatar = $profile->avatar;
-                $social->link = $profile->user['link'];
-                $social->locale = $profile->user['locale'];
+                $social->link = $profile->link;
                 $social->user_id = $user->id;
-                $social->provider = 'facebook';
+                $social->provider = $profile->provider;
+                ($sociais > 0) ?  $social->active = false :  $social->active  = true;
                 $social->save();
-
             }
-        return redirect('site/profile');
+            else{
+                return redirect()->back()->with('error','Rede social, já foi cadastra :(' );
+            }
 
+        return redirect('site/profile')->with('success','Sua rede social foi adiconada :)' );
 
     }
 

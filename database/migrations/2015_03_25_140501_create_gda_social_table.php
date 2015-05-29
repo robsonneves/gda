@@ -14,15 +14,14 @@ class CreateGdaSocialTable extends Migration {
 	{
         Schema::create('gda_social', function(Blueprint $table)
         {
-            $table->bigInteger('id')->primary(); //bigIncrements,
-            $table->string('nome'); //verficar ->unique();
-            $table->string('email');
+            $table->string('id')->primary(); //bigIncrements,
+            $table->string('name');         //verficar ->unique();
+            $table->string('email')->nullable();
             $table->string('link');
-            $table->string('avatar');
-            $table->string('locale');
+            $table->string('avatar')->nullable();
             $table->string('provider');
             $table->string('user_id');
-            $table->boolean('active')->default(1);
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
 	}

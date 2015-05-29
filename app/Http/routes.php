@@ -16,6 +16,7 @@ Route::group(['middleware' => 'guest'], function()
    {
 		return view('site.index');
    });
+
 });
 
 Route::get('install', 'WelcomeController@install');

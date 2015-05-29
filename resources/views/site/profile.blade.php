@@ -32,7 +32,7 @@
                     <div class="col-sm-12" >
                         <div class="row">
                             <div class="col-sm-3 profile-pic">
-                                <img src="{{isset($social) ? $social->avatar :  asset("assets/site/img/avatars/male.png") }}"/>
+                                <img src="{{isset($social->avatar) ? $social->avatar :  asset("assets/site/img/avatars/male.png") }}" width="100px" height="100px" />
                                 <div class="padding-10">
                                     <h4 class="font-md"><strong></strong>
                                     <br>
@@ -49,7 +49,7 @@
                                     </h1>
                                 @else
                                     <h1>
-                                        <td>{{$social->nome}}</td>
+                                        <td>{{$social->user->usuarioWeb->Pessoa->nome}}</td>
                                         <br>
                                         <small>{{$social->user_id}}</small>
                                     </h1>
@@ -62,7 +62,7 @@
                                         </li>
                                         <li>
                                             <p class="text-muted">
-                                                <i class="fa fa-facebook-square"></i>
+                                                <i class="fa fa-{{$social->provider}}-square"></i>
                                                 <td><a href="{{$social->link}}" target="_blank">{{$social->provider}}</a></td>
                                             </p>
                                         </li>
@@ -84,22 +84,24 @@
                                 </h1>
                                 <ul class="company-social">
                                     <li class="social-facebook">
-                                        <a href="/auth/redirect/facebook/"><i class="fa fa-facebook"></i></a>
+                                        <a href="/auth/redirect/facebook"><i class="fa fa-facebook"></i></a>
                                     </li>
                                     <li class="social-google">
-                                        <a href="javascript:void(0);" target="_blank"><i class="fa fa-linkedin fa-lg txt-color-white"></i></a>
+                                        <a href="/auth/redirect/linkedin"><i class="fa fa-linkedin fa-lg txt-color-white"></i></a>
                                     </li>
                                     <li class="social-twitter">
-                                        <a href="javascript:void(0);" target="_blank"><i class="fa fa-twitter"></i></a>
+                                        <a href="/auth/redirect/twitter" ><i class="fa fa-twitter"></i></a>
                                     </li>
                                     <li class="social-dribble">
-                                        <a href="javascript:void(0);" target="_blank"><i class="fa fa-google-plus"></i></a>
+                                        <a href="/auth/redirect/googleplus"><i class="fa fa-google-plus"></i></a>
                                     </li>
                                 </ul>
                            </div>
                         </div>
                     </div>
                 </div>
+
+
                 <!-- FIM DA PRIMEIRA ABA -->
 
                 <!-- COMEÇA SEGUNDA ABA -->

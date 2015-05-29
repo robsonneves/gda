@@ -35,21 +35,33 @@ return [
 	],
 
     'github' => [
-        'client_id' => 'ae70bb259b09681964ed',
+        'client_id'     => 'ae70bb259b09681964ed',
         'client_secret' => 'b303cc795664820fe79b2ecb16f7b7d7cd3ee4a7',
-        'redirect' => 'http://gda.app/auth/callback',
+        'redirect'      => 'http://gda.app/auth/callback',
     ],
 
     'facebook' => [
-        'client_id' => '818042721621585',
+        'client_id'     => '818042721621585',
         'client_secret' => '9fa8f24f3ac07fc1d182f0ed9b8286ad',
-        'redirect' => 'http://gda.app/auth/callback',
+        'redirect'      => env('SOCIAL_REDIRECT').'/auth/callbackfacebook',
     ],
 
     'google' => [
-        'client_id' => '25505335961-tm1iipqq9u60hpmt1nipl3o1osv8vudi.apps.googleusercontent.com',
+        'client_id'     => '25505335961-tm1iipqq9u60hpmt1nipl3o1osv8vudi.apps.googleusercontent.com',
         'client_secret' => '1_slVRqvXzvepRQLlE7Z8W6d',
-        'redirect' => 'http://www.gda.com.br/auth/callback/',
+        'redirect'      => env('SOCIAL_REDIRECT').'/auth/callback/',
+    ],
+
+    'linkedin' => [
+        'client_id'     => '77hwa2z44yxovc',
+        'client_secret' => 'jX6P6y7aJOsuZJnR',
+        'redirect'      => env('SOCIAL_REDIRECT').'/auth/callbacklinkedin',
+    ],
+
+    'twitter' => [
+        'client_id'     => 'XLI1eyeoRPVpVYCeklNYZ42mx',
+        'client_secret' => 'AitzNO5gZckQSYR6fgF66rsJhA7XTFhPMqUkgO90E6yTmRncEc',
+        'redirect'      => env('SOCIAL_REDIRECT').'/auth/callbacktwitter',
     ],
 
 ];

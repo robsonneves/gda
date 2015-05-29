@@ -7,9 +7,8 @@ class ContatoController extends Controller {
 
 	public function __construct()
 	{
-        $this->middleware('guest');
-	}
 
+    }
 	public function index()
 	{
         return view('layouts.site.form')->nest('key', 'site.contato',[]);
@@ -19,9 +18,9 @@ class ContatoController extends Controller {
     {
         try{
 
-            $this->data = $request->all();
+            $data = $request->all();
 
-            \Mail::queue('emails.welcome', $this->data, function($message)
+            \Mail::queue('emails.welcome', $data, function($message) use ($data)
             {
                 $message->to($this->data['email'],$this->data['name'])->subject($this->data['message']);
             });
@@ -32,6 +31,5 @@ class ContatoController extends Controller {
 
             return redirect()->back()->with('error',' Falha ao Enviar');
         }
-
     }
 }

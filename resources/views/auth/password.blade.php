@@ -23,9 +23,9 @@
                             </label>
                         </section>
                         <section>
-                            <label class="label">CNPJ/CPF</label>
+                            <label class="label">Email</label>
                             <label class="input">
-                                <input type="text" name="cpfcnpj" placeholder="CNPJ/CPF" required="required">
+                                <input type="text" name="email" placeholder="email" required="required">
                             </label>
                         </section>
 					</fieldset>

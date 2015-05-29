@@ -1,12 +1,9 @@
 @section('content')
 
-<br>
-<br>
-
-    <div class="row-fluid">
+    <div class="row-fluid" style="margin-top:35px;">
         <div class="col-sm-6 col-sm-offset-3">
             <div class="well no-padding">
-                <form action="{{ url('/auth/login') }}" id="form-controller" class="smart-form client-form" method="post" data-type="post" >
+                <form action="{{ url('/auth/login') }}" id="form-controller" class="smart-form client-form" method="post" >
                     <header>
                         <h3>Login</h3>
                     </header>      

@@ -12,7 +12,6 @@ class EmailRegister {
 	 *
 	 * @return void
 	 */
-    private $registro;
 
 	public function __construct()
 	{
@@ -27,11 +26,11 @@ class EmailRegister {
 	 */
 	public function handle(NewRegister $event)
 	{
-        $this->registro =$event->getRegister();
+        $registro =$event->getRegister();
 
-        $send = \Mail::queue('emails.welcome', ['key' => $this->registro], function($message)
+        $send = \Mail::queue('emails.welcome', ['key' => $registro], function($message) use ($registro)
         {
-            $message->to($this->registro->email,$this->registro->name)->subject('Novo Registro GD@');
+            $message->to($registro->email,$registro->name)->subject('Novo Registro GD@');
         });
 
         if ($send)

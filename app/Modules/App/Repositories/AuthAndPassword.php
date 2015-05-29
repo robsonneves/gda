@@ -18,7 +18,7 @@ trait AuthAndPassword {
 
     public function getLogin()
     {
-       return view('auth.'.$this->cookie->get('system').'login' );
+       return view('auth'.$this->cookie->get('system').'login' );
     }
 
     public function getLogout()
@@ -32,36 +32,24 @@ trait AuthAndPassword {
         return view('auth.password');
     }
 
-    public  function postResetPassword(Request $request, Pessoa $pessoa)
+    public  function postResetPassword(Request $request, User $user)
     {
+       try{
+            $user = $user->find($request->input('login'));
 
-        echo $this->mask($request->get('cpfcnpj'),'###.###.###-##');
-
-          //$pessoa = $pessoa->where('cpf_cnpj','=',$request->get('cpfcnpj'))->first();
-
-
-            /*
-            try{
-                if(!$pessoa ){throw new \Exception("Error Processing Request"); }
-
-                if($pessoa->web->sigla ==$request->get('login') ){
-
-                    echo 'email';
-                    //if ($request->ajax()) { return response()->json(['success'=>true]); }
-                    //return redirect()->route('social.create');
-                }
-                else{
-                    throw new \Exception("Error Processing Request");
-                }
-
-
-
-            }catch (\Exception $e) {
-
-                if ($request->ajax()) { return response()->json(['fail'=>true]); }
-                return 'FAIl';
+            if($user->email == $request->input('email') )
+            {
+                $this->sendPassword($user);
+                return redirect()->back()->with('success','em alguns minutos receberá um e-mail :)');
+            }else
+            {
+                throw new \Exception("Error Processing Request");
             }
-            */
+
+       }catch (\Exception $e) {
+
+            return redirect('contato')->with('error','Dados invalidos, não foi posivel resetar sua senha, entre em contato ;(');
+       }
     }
 
     public  function getRegister()
@@ -111,23 +99,10 @@ trait AuthAndPassword {
 
     }
 
-    private  function mask($val, $mask)
+    private function sendPassword(User $user)
     {
-        $maskared = '';
-        $k = 0;
-        for($i = 0; $i<=strlen($mask)-1; $i++)
-        {
-            if($mask[$i] == '#')
-            {
-                if(isset($val[$k]))
-                    $maskared .= $val[$k++];
-            }
-            else
-            {
-                if(isset($mask[$i]))
-                    $maskared .= $mask[$i];
-            }
-        }
-        return $maskared;
+        \Mail::queue('emails.password', ['key' => ''], function ($message) use ($user) {
+            $message->to($user->email, $user->id)->subject('Subject');
+        });
     }
 }

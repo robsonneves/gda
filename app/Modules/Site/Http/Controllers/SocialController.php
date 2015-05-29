@@ -4,10 +4,10 @@ use App\Contracts\Data\Social;
 use App\Http\Controllers\Controller;
 use App\Modules\Site\Http\Requests\SocialRequest;
 
-
 class SocialController extends Controller {
 
     private $social;
+    private $user;
 
 	/**
 	 * Display a listing of the resource.
@@ -19,29 +19,25 @@ class SocialController extends Controller {
     {
         $this->middleware('auth');
         $this->social = $social;
+        $this->user   = \Auth::user();
     }
 
 	public function index()
     {
-        return \view('social.index')->with('sociais',\Auth::user()->sociais);
+        return view('layouts.site.widget')->nest('key', 'social.index', array('sociais' =>  $this->user->sociais));
     }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+    public function all(){
+
+        
+        return view('layouts.site.index')->nest('key', 'social.all', array('sociais' => $this->social->all() ));
+    }
 
 	public function create()
 	{
       
     }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store(SocialRequest $request,Social $social)
 	{
         try{
@@ -58,51 +54,57 @@ class SocialController extends Controller {
 
     }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		return $this->social->find($id);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
         dd( $this->social->find($id) );
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    public function active($id)
+    {
+      try {
+          $social = $this->user->sociais()->whereActive(1)->first();
+          $social->active = false;
+          $social->save();
+          $social = $this->social->find($id);
+          $social->active = true;
+          $social->save();
+          return redirect()->back()->with('success',$social->id.' Foi Ativado');
 
-	public function update(SocialRequest $request, $id)
+      }catch (\Exception $e) {
+
+         return redirect()->back()->with('error','Error ao Ativar');
+      }
+
+    }
+
+	public function update($id)
 	{
-        $request->all();
-	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	}
 
     public function destroy($id)
 	{
-        $social = $this->social->find($id);
-        $social->delete();
-	}
+        try{
+            $social = $this->social->find($id);
+
+            if($social)
+            {
+                $social->delete();
+                $social= $this->user->sociais()->first();
+                $social->active = true;
+                $social->save();
+                return redirect()->back()->with('success','Excluido');
+            }
+       
+        }catch (\Exception $e) {
+
+            return redirect()->back()->with('error','Error ao deletar');
+        }
+   }
 
 }

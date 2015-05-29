@@ -15,10 +15,12 @@
     	@show
 
         <!-- LIB JS -->
-        <script src="{{asset('site/requirejs/require.js')}}" data-main="{{asset("site/requirejs/main.js")}}"></script>
         <script src="{{asset("bower_components/jquery/dist/jquery.js")}}"></script>
         <script src="{{asset("bower_components/angular/angular.js")}}"></script>
+        <script src="{{asset("bower_components/jquery-ujs/src/rails.js")}}"></script>
         <script src="{{asset("assets/site/requirejs/controllers.js")}}"></script>
+
+        
     </head>
 
 	<!--
@@ -71,17 +73,19 @@
             @if(Session::has('success'))
 
                 <div class="alert alert-success fade in"><button class="close" data-dismiss="alert">×</button>
-                    <i class="fa-fw fa fa-check"></i><strong>Success</strong>{{Session::get('success')}}
+                    <i class="fa-fw fa fa-check"></i><strong></strong>{{Session::get('success')}}
                 </div>
-            @elseif(Session::has('error'))
+                
+            @elseif(Session::has('error') || Session::has('alert'))
 
                 <div class="alert alert-danger fade in"><button class="close" data-dismiss="alert">×</button>
-                    <i class="fa-fw fa fa-times"></i><strong>Error!</strong> {{Session::get('error')}}
+                    <i class="fa-fw fa fa-times"></i><strong></strong> {{Session::get('error')}}
                </div>
+
             @endif
 
 
-        @yield('content')
+        	@yield('content')
 
 		</div>
         <!-- Dynamic Modal -->
@@ -101,6 +105,7 @@
             </div>
         </div>
         <!-- /.modal -->
+        
 
 		 <!-- #FOOTER -->
 		@include('layouts.site.footer')
@@ -110,7 +115,7 @@
         <script src="{{elixir("assets/site/js/everything.js")}}"></script>
         @show
 
-
+        
 		<!-- #PAGE SCRIPT -->
 		<script type="text/javascript">
 			jQuery(document).ready(function() {

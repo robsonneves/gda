@@ -4,14 +4,14 @@
 
 @section( 'widget-header') @show
         <!-- widget grid -->
-
+  
 <div class="jumbotron-icon" style="padding-bottom:60px">
-    <a href="/site/processos" class="txt-color-blueDark">
+    <a href="javascript:history.back(1)" class="txt-color-blueDark">
         <i class="fa fa-arrow-left icon-2 col-xs-1" style="margin-top: 35px; margin-left:15px"></i>
     </a>
 </div>
 
-<section id="content">
+<section id="content" style="padding-bottom:60px">
     <!-- row -->
     <div class="row">
         <!-- NEW WIDGET START -->

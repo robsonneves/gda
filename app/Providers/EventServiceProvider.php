@@ -14,6 +14,9 @@ class EventServiceProvider extends ServiceProvider {
 		'App\Events\NewRegister' => [
 			'App\Handlers\Events\EmailRegister',
 		],
+        'SocialiteProviders\Manager\SocialiteWasCalled' => [
+            'SocialiteProviders\LinkedIn\LinkedInExtendSocialite@handle',
+        ],
 	];
 
 	/**

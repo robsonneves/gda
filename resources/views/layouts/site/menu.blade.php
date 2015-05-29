@@ -1,4 +1,4 @@
-<style type="text/css">.p-ico1{margin: 0px 0px 40px 20px;}.p-ico2{margin: -52px 0px 40px 90px;}.p-ico3{margin: -14px 0px 40px 10px;}
+<style type="text/css">.p-ico1{margin: 0px 0px 40px 20px;}.p-ico2{margin: -52px 0px 40px 85px;}.p-ico3{margin: -53px 0px 40px 160px;}
 .linkModulo a:hover {color:#999999 !important;background-color: #ffffff !important;}
 </style> <!-- AJUSTA A POSIÇÃO DOS ICONES, DENTRO DE MENU MODULOS/ A COR DO LINK DO ICONE DO MODULO-->
 
@@ -82,8 +82,10 @@
         <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
             <li class="" ng-controller="ShowSocialProfile">
                 <a href="#" class="dropdown-toggle no-margin" data-toggle="dropdown">
-                    <img class="online img-circle"  ng-if="social !== '' " src="@{{social.avatar}}"  width="40" height="40" >
-                    <img class="online img-circle"  ng-if="social === '' " src="{{asset("assets/site/img/avatars/male.png")}}"  width="40" height="40" >
+
+                    <img class="online img-circle"  ng-if="social.avatar != null " src="@{{social.avatar}}"  width="40" height="40" >
+                    <img class="online img-circle"  ng-if="social.avatar == null " src="{{asset("assets/site/img/avatars/male.png")}}"  width="40" height="40" >
+                
                 </a>
                 <ul class="dropdown-menu pull-right">
                     <li>
@@ -113,7 +115,7 @@
                         <li class="jumbotron-icon linkModulo ">
                             <a href="/site/processos" class="fa fa-file-text-o txt-color-red icon-3 p-ico1" rel="tooltip" data-placement="top" data-original-title="Processos">
                             </a>
-                            <a href="{{route('uploads.index')}}" class="fa fa-download txt-color-black icon-3 p-ico2" rel="tooltip" data-placement="top" data-original-title="Processos">
+                            <a href="{{route('uploads.index')}}" class="fa  fa-cloud-upload txt-color-green icon-3 p-ico2" rel="tooltip" data-placement="top" data-original-title="Processos">
                             </a>
                         </li>
                     </ul>

@@ -22,9 +22,7 @@ class CreateUsersTable extends Migration {
             $table->string('logo');
             $table->char('status');
             $table->string('tipo');
-            //$table->integer('id_social');
-            $table->integer('id_cargo');
-			$table->rememberToken();
+          	$table->rememberToken();
 			$table->timestamps();
 		});
 	}

@@ -5,7 +5,6 @@
 <style type="text/css">.trow {width: 100%;}</style> <!-- TAMANHO DA ROW -->
 
 <div class="panel col-lg-12">
-    <br>
     <div ng-controller="ProcessListCtrl" class="home-sectionr"  style="margin:0px 0px 300px ">
         <div class="row trow">
             <div class="col-lg-10 col-lg-offset-1">
@@ -21,8 +20,6 @@
                 </div>
             </div>
         </div>
-
-        <br>
 
         <div class="row trow" >
             <div class="col-lg-10 col-lg-offset-1">

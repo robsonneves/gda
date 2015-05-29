@@ -5,75 +5,55 @@
         <div class="container custom-container">
             <div class="row-fluid">
                 <div class="col-md-2 col-sm-6 col-xs-12">
-                    
                     <font color="e25450">Matriz - PR</font>
                     <p>
                       Av. Manoel Ribas n° 857, Mercês
-                    <br>
                     Curitiba - PR  
-                    <br>
                     Cep 80510-346
-                    <br>
                     <abbr title="Phone">Tel</abbr> (41) 3072-7500 
                     </p>
-
 
                     <a href="{{ url('/contato') }}">
                         <font color="e25450" size="20">Contato</font>
                     </a>
-
-
-
                 </div>
+                
                 <div class="col-md-2 col-sm-6 col-xs-12">
-                    
                     <font color="e25450">Filial - SP</font>
                     <p>
                       Av. Ten. Haroldo Egídio S. Santos n° 365, 
-                    <br>
                     Campinas - SP  
-                    <br>
                     Cep 13070-160
-                    <br>
                     <abbr title="Phone">Tel</abbr> (19) 3368-9568 
                     </p>
                 </div>
+                
                 <div class="col-md-2 col-sm-6 col-xs-12">
-                    
                     <font color="e25450">Filial - PB</font>
                     <p>
                       Av. Francisca Moura n° 434/505, Centro
-                    <br>
                     João Pessoa - PB  
-                    <br>
                     Cep 58013-440
-                    <br>
                     <abbr title="Phone">Tel</abbr> (83) 3578-8835 
                     </p>
                 </div>
 
-                <div ng-controller="ShowSocialRecents" class="col-md-2 col-sm-3 col-xs-3">
-                    <font color="b9b9b9"><b>Usuários</b></font><p>
-                    <ul ng-repeat="social in recents" class="list-inline friends-list col-sm-4">
-                        <li> <a href="@{{social.link}}" target="_blank"><img src="@{{social.avatar}}" width="35" height="35" title="@{{$social.nome}}"> </a> </l>
+                <div ng-controller="ShowSocialRecents" class="col-md-6 col-sm-6 col-xs-12">
+                    <a href="/social/all"><font color="b9b9b9"><b>Usuários</b></font><p></p></a>
+                    
+                    <ul ng-repeat="social in recents" class="list-inline friends-list col-sm-1">
+
+                        <li  ng-if="social.avatar == null"> <a href="@{{social.link}}" target="_blank"><img src="{{asset("assets/site/img/avatars/male.png")}}" width="35" height="35" title="@{{$social.name}}"> </a> </li>
+                        <li  ng-if="social.avatar != null"> <a href="@{{social.link}}" target="_blank"><img src="@{{social.avatar}}" width="35" height="35" title="@{{$social.name}}"> </a> </li>
+
                     </ul>
-                </div>
-
-                <div id="fb-root" class="col-md-2 col-sm-3 col-xs-12"></div>
-                <script>(function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) return;
-                        js = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
-
-                <div class="fb-page" data-href="https://www.facebook.com/pages/A-Augusto-Grellert-Advogados/189678004403266?fref=ts" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
-
-             </div>
+                    
+                    <a href="{{route('social.all')}}" > ..mais</a>
+                </div>  
+            </div>
         </div>
     </div>
-    {{--
+
     <div class="bottom-footer">
         <div class="container">
             <div class="row">
@@ -87,9 +67,31 @@
                     <a href="https://plus.google.com/"     target="_blank"> <i class="fa fa-google-plus-square fa-lg txt-color-redLight"></i> </a>
                     </p>
                 </div>
+
+                <div class="pull-right testes" style="margin-top: -40px;">
+                    <div class="fb-share-button" data-href="http://gda.aag.adv.br" data-layout="button_count"></div>
+
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://gda.aag.adv.br" data-via="AagAdvogados" data-lang="pt" data-dnt="true">Tweetar</a>
+
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+                    </script>
+
+                    <script>
+                            (function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s); js.id = id;
+                                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));
+                    </script>
+                    
+                    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: pt_BR</script>
+                    <script type="IN/Share" data-url="www.gda.aag.adv.br" data-counter="right"></script>
+                </div>
             </div>
         </div>
-    </div>--}}
+    </div>
 </footer>
 
 

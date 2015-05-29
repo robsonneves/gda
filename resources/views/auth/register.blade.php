@@ -33,20 +33,21 @@
         <input type="password" name="password_confirmation" placeholder="Confirmar Senha" required="required">
     </label>
 </section>
-@endsection
 
+@endsection
 
 @section('form-conteudo2')
     <section>
         <label class="checkbox">
             <input type="checkbox" name="news" id="news" value="1"/>
-            <i></i>Quero receber novidades e ofertas especiais</label>
+            <i></i>Quero receber novidades e ofertas especiais
+        </label>
         <label class="checkbox">
             <input type="checkbox" name="terms" id="terms" value="1"/>
-            <i></i>Concordo com os <a href="#" data-toggle="modal" data-target="#myModal"> Termos e Condições </a></label>
+            <i></i>Concordo com os <a href="#" data-toggle="modal" data-target="#myModal"> Termos e Condições </a>
+        </label>
     </section>
 @stop
-
 
 @section('form-footer')
     <button type="submit" class="btn btn-primary"> Registrar </button>
